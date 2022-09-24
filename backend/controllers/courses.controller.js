@@ -43,7 +43,6 @@ const createCourse = async (req, res, next) => {
         return new Error({ message: error })
     };
 
-    console.log(results);
     res.json(results)
 }
 
