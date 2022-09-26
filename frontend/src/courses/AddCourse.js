@@ -5,7 +5,10 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
+import MenuItem from '@mui/material/MenuItem';
+import TextareaAutosize from '@mui/material/TextareaAutosize';
 import axios from 'axios';
+
 
 const AddCourse = () => {
     const [title, setTitle] = useState('');
@@ -42,7 +45,7 @@ const AddCourse = () => {
                     Add Your Course
                 </Typography>
                 <Grid container spacing={3}>
-                    <Grid item xs={12} sm={6}>
+                    <Grid item xs={12} >
                         <TextField
                             type="text"
                             required
@@ -56,7 +59,7 @@ const AddCourse = () => {
                             onChange={(e) => setTitle(e.target.value)}
                         />
                     </Grid>
-                    <Grid item xs={12} sm={6}>
+                    <Grid item xs={12}>
                         <TextField
                             required
                             id="description"
@@ -78,14 +81,26 @@ const AddCourse = () => {
                             placeholder="Enter a Location"
                             fullWidth
                             variant="standard"
+                            select
                             value={location}
                             onChange={(e) => setLocation(e.target.value)}
-                        />
+                            helperText="Please select your currency"
+                        >
+                            <MenuItem value={'Virtual'}>Virtual</MenuItem>
+                            <MenuItem value={'Hybrid'}>Hybrid</MenuItem>
+                            <MenuItem value={'In-Person'}>In-Person</MenuItem>
+                        </TextField>
                     </Grid>
                     <Grid item xs={12}>
                         <TextField
                             required
+                            InputProps={{
+                                inputProps: {
+                                    max: 1000, min: 0
+                                }
+                            }}
                             id="capacity"
+                            type="number"
                             name="capacity"
                             label="Capacity"
                             placeholder="Max students per class"

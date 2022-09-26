@@ -35,11 +35,16 @@ const CoursesList = () => {
         });
         setCourses(removeCourse);
 
+        const getAllCourses = async () => {
+            const allCourses = await retrieveCourses();
+            if (allCourses) setCourses(allCourses)
+        }
+        getAllCourses();
     }
 
     return (
         <Container>
-            <h1>Courses</h1>
+            <h1>My Courses</h1>
             <button onClick={() => navigate('./courses/add')} className="btn btn-sm btn-success mb-2">Add Course</button>
             <Grid pt={4} container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }} >
                 {courses?.map((course) =>
@@ -50,7 +55,7 @@ const CoursesList = () => {
                                     {course.title}
                                 </Typography>
                                 <Typography variant="subtitle1" color="text.secondary">
-                                    Description: {course.description}
+                                    Description: {course.description }
                                 </Typography>
                                 <Typography variant="subtitle1" paragraph>
                                     Location : {course.location}
